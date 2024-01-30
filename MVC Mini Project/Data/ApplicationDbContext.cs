@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MVC_Mini_Project.Models;
 
 namespace MVC_Mini_Project.Data
 {
@@ -8,5 +9,6 @@ namespace MVC_Mini_Project.Data
         {
             
         }
+        public DbSet<Category> Categories { get; set; }
     }
 }
