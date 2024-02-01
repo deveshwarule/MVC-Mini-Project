@@ -27,6 +27,10 @@ namespace MVC_Mini_Project.Controllers
             {
                 ModelState.AddModelError("Name","Dispaly Order cannot exactly match the Name.");
             }
+            if (obj.Name.ToLower() == "texst")
+            {
+                ModelState.AddModelError("Name", "Test is an invalid value");
+            }
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(obj);
