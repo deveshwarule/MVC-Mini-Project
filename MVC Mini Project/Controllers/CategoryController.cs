@@ -23,14 +23,16 @@ namespace MVC_Mini_Project.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            //if(obj.Name == obj.DisplayOrder.ToString())
-            //{
-            //    ModelState.AddModelError("Name","Dispaly Order cannot exactly match the Name.");
-            //}
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "Dispaly Order cannot exactly match the Name.");
+            }
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
+                TempData["Success"] = "Category created successfully";
+                return RedirectToAction("Index");   
             }      
             return View();
         }
@@ -56,6 +58,7 @@ namespace MVC_Mini_Project.Controllers
             {
                 _db.Categories.Update(obj);
                 _db.SaveChanges();
+                TempData["Success"] = "Category Updated successfully";
                 return RedirectToAction("Index");
             }
             return View();
@@ -85,6 +88,7 @@ namespace MVC_Mini_Project.Controllers
             }
             _db.Categories.Remove(obj);
             _db.SaveChanges();
+            TempData["Success"] = "Category Deleted successfully";
             return RedirectToAction("Index");
         }
     }
